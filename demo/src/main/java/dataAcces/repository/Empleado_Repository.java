@@ -10,10 +10,10 @@ import dataAcces.model.Empleado_Cargo;
 
 public class Empleado_Repository extends SQLController {
 
-    private final String getAll = "SELECT * FROM empleado";
-    private final String insert = "INSERT INTO empleado (ID, Identificacion, Nombre_Completo, Direccion, Telefono, Mail, Cargo) VALUES(?,?,?,?,?,?,?)";
-    private final String update = "UPDATE empleado SET Identificacion=?, Nombre_Completo=?, Direccion=?, Telefono=?, Mail=?, Cargo=? WHERE ID=?";
-    private final String delete = "DELETE FROM empleado WHERE ID=?";
+    private final String getAll = "SELECT * FROM Empleados";
+    private final String insert = "INSERT INTO Empleados (ID, Identificacion, Nombre_Completo, Direccion, Telefono, Mail, Cargo) VALUES(?,?,?,?,?,?,?)";
+    private final String update = "UPDATE Empleados SET Identificacion=?, Nombre_Completo=?, Direccion=?, Telefono=?, Mail=?, Cargo=? WHERE ID=?";
+    private final String delete = "DELETE FROM Empleados WHERE ID=?";
 
     public List<Empleado> GetAll() {
         try {
@@ -43,7 +43,7 @@ public class Empleado_Repository extends SQLController {
             parameters.add(empleado.getDireccion());
             parameters.add(empleado.getTelefono());
             parameters.add(empleado.getMail());
-            parameters.add(Integer.parseInt(empleado.getCargo().toString()));
+            parameters.add(empleado.getCargo().ordinal());
             return ExecuteNonQuery(insert);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Pedido extends Base_Model {
     private Date Fecha;
     private Estado_Pedido estado;
-    private float total;
+    private double total;
     private int cliente_ID;
     private int empleado_ID;
 
@@ -41,7 +41,7 @@ public class Pedido extends Base_Model {
         this.estado = estado;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
@@ -49,7 +49,7 @@ public class Pedido extends Base_Model {
         this.total = total;
     }
 
-    public Pedido(int iD, Date fecha, Estado_Pedido estado, float total, int cliente_ID, int empleado_ID) {
+    public Pedido(int iD, Date fecha, Estado_Pedido estado, double total, int cliente_ID, int empleado_ID) {
         super(iD);
         Fecha = fecha;
         this.estado = estado;

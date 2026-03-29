@@ -2,8 +2,8 @@ package dataAcces.model;
 
 public class Detalle_Pedido extends Base_Model {
 
-    private float cantidad;
-    private float subtotal;
+    private double cantidad;
+    private double subtotal;
     private int pedidos_ID;
     private int productos_ID;
 
@@ -23,7 +23,7 @@ public class Detalle_Pedido extends Base_Model {
         this.productos_ID = productos_ID;
     }
 
-    public float getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
@@ -31,7 +31,7 @@ public class Detalle_Pedido extends Base_Model {
         this.cantidad = cantidad;
     }
 
-    public float getSubtotal() {
+    public double getSubtotal() {
         return subtotal;
     }
 
@@ -39,7 +39,7 @@ public class Detalle_Pedido extends Base_Model {
         this.subtotal = subtotal;
     }
 
-    public Detalle_Pedido(int iD, float cantidad, float subtotal, int pedidos_ID, int productos_ID) {
+    public Detalle_Pedido(int iD, double cantidad, double subtotal, int pedidos_ID, int productos_ID) {
         super(iD);
         this.cantidad = cantidad;
         this.subtotal = subtotal;

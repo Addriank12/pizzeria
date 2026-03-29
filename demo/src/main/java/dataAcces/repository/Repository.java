@@ -13,9 +13,9 @@ public class Repository {
     private final String pass;    
 
     public Repository(){
-        connectionUrl = "jdbc:mysql://localhost:3306/pizzeria";
+        connectionUrl = "jdbc:mysql://localhost:3306/Pizzeria";
         user = "root";
-        pass = "Azuay1560";
+        pass = "Root1234!";
     }
     
     protected Connection GetConnection(){

@@ -3,7 +3,7 @@ package dataAcces.model;
 public class Producto extends Base_Model {
     private String nombre;
     private String descripcion;
-    private float precio;
+    private double precio;
     private int categoria_ID;
 
     public int getCategoria_ID() {
@@ -30,7 +30,7 @@ public class Producto extends Base_Model {
         this.descripcion = descripcion;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
@@ -38,7 +38,7 @@ public class Producto extends Base_Model {
         this.precio = precio;
     }
 
-    public Producto(int iD, String nombre, String descripcion, float precio, int categoria_ID) {
+    public Producto(int iD, String nombre, String descripcion, double precio, int categoria_ID) {
         super(iD);
         this.nombre = nombre;
         this.descripcion = descripcion;
