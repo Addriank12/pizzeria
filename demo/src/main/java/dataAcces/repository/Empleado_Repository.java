@@ -1,0 +1,82 @@
+package dataAcces.repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import dataAcces.model.Empleado;
+import dataAcces.model.Empleado_Cargo;
+
+public class Empleado_Repository extends SQLController {
+
+    private final String getAll = "SELECT * FROM empleado";
+    private final String insert = "INSERT INTO empleado (ID, Identificacion, Nombre_Completo, Direccion, Telefono, Mail, Cargo) VALUES(?,?,?,?,?,?,?)";
+    private final String update = "UPDATE empleado SET Identificacion=?, Nombre_Completo=?, Direccion=?, Telefono=?, Mail=?, Cargo=? WHERE ID=?";
+    private final String delete = "DELETE FROM empleado WHERE ID=?";
+
+    public List<Empleado> GetAll() {
+        try {
+            List<Empleado> result = new ArrayList<>();
+            ResultSet reader = ExecuteReader(getAll);
+            while (reader.next()) {
+                Empleado empleado = new Empleado(
+                        reader.getInt("ID"), reader.getString("Identificacion"),
+                        reader.getString("Nombre_Completo"), reader.getString("Direccion"),
+                        reader.getString("Telefono"), reader.getString("Mail"),
+                        Empleado_Cargo.valueOf(reader.getString("Cargo")));
+                result.add(empleado);
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public boolean Insert(Empleado empleado) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(empleado.getID());
+            parameters.add(empleado.getIdentificacion());
+            parameters.add(empleado.getNombre_Completo());
+            parameters.add(empleado.getDireccion());
+            parameters.add(empleado.getTelefono());
+            parameters.add(empleado.getMail());
+            parameters.add(Integer.parseInt(empleado.getCargo().toString()));
+            return ExecuteNonQuery(insert);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean Update(Empleado empleado) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(empleado.getIdentificacion());
+            parameters.add(empleado.getNombre_Completo());
+            parameters.add(empleado.getDireccion());
+            parameters.add(empleado.getTelefono());
+            parameters.add(empleado.getMail());
+            parameters.add(Integer.parseInt(empleado.getCargo().toString()));
+            parameters.add(empleado.getID());
+            return ExecuteNonQuery(update);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean Delete(Integer id) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(id);
+            return ExecuteNonQuery(delete);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+}
