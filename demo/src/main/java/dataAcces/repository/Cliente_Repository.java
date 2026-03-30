@@ -12,10 +12,11 @@ import java.util.List;
 
 public class Cliente_Repository extends SQLController {
 
-    private final String getAll = "SELECT * FROM Clientes";
-    private final String insert = "INSERT INTO Clientes (ID, Identificacion, Nombre_Completo, Direccion, Telefono, Mail) VALUES (?,?,?,?,?,?)";
-    private final String update = "UPDATE Clientes SET Identificacion=?, Nombre_Completo=?, Direccion=?, Telefono=?, Mail=? WHERE ID=?";
-    private final String delete = "DELETE FROM Clientes WHERE ID=?";
+    private final String getAll = "CALL sp_Clientes_GetAll()";
+    private final String insert = "CALL sp_Clientes_Insert(?,?,?,?,?,?)";
+    private final String update = "CALL sp_Clientes_Update(?,?,?,?,?,?)";
+    private final String delete = "CALL sp_Clientes_Delete(?)";
+
     private final String getById = "SELECT * FROM Clientes WHERE ID=?";
     private final String getByIdentificacion = "SELECT * FROM Clientes WHERE Identificacion=?";
     private final String getPedidosByNombreCliente = "SELECT p.ID, c.Nombre_Completo, p.Fecha, p.Estado, p.Total "
@@ -25,7 +26,7 @@ public class Cliente_Repository extends SQLController {
     public List<Cliente> GetAll() {
         try {
             List<Cliente> result = new ArrayList<>();
-            ResultSet reader = ExecuteReader(getAll);
+            ResultSet reader = ExecuteCallReader(getAll);
             while (reader.next()) {
                 Cliente cliente = new Cliente(
                         reader.getInt("ID"), reader.getString("Identificacion"),
@@ -49,7 +50,7 @@ public class Cliente_Repository extends SQLController {
             parameters.add(cliente.getDireccion());
             parameters.add(cliente.getTelefono());
             parameters.add(cliente.getMail());
-            return ExecuteNonQuery(insert);
+            return ExecuteCallNonQuery(insert);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -65,7 +66,7 @@ public class Cliente_Repository extends SQLController {
             parameters.add(cliente.getTelefono());
             parameters.add(cliente.getMail());
             parameters.add(cliente.getID());
-            return ExecuteNonQuery(update);
+            return ExecuteCallNonQuery(update);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -76,7 +77,7 @@ public class Cliente_Repository extends SQLController {
         try {
             parameters = new ArrayList<>();
             parameters.add(id);
-            return ExecuteNonQuery(delete);
+            return ExecuteCallNonQuery(delete);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
