@@ -50,6 +50,7 @@ public class ConsultaPorPedido extends javax.swing.JPanel {
         jLabel1.setText("Ingrese el ID del pedido");
 
         BotonBuscar.setText("Buscar");
+        BotonBuscar.addActionListener(this::BotonBuscarActionPerformed);
 
         IDTxt.setColumns(10);
 
@@ -83,6 +84,10 @@ public class ConsultaPorPedido extends javax.swing.JPanel {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
