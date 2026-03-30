@@ -5,7 +5,7 @@
 package view;
 
 import javax.swing.JPanel;
-import view.Mantenimientos.ConsultaPorCliente;
+import view.Mantenimientos.ConsultaPorCategoria;
 import view.Mantenimientos.ConsultaPorPedido;
 import view.Mantenimientos.MantenimientoClientes;
 import view.Mantenimientos.MantenimientoEmpleado;
@@ -99,17 +99,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PedidoPorClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_PedidoPorClienteMenuActionPerformed
-        ConsultaPorCliente panelconsulta1 = new ConsultaPorCliente(ventana);
+        ConsultaPorCategoria panelconsulta1 = new ConsultaPorCategoria(ventana);
         setContentPane(panelconsulta1);
         revalidate();
         repaint();
     }// GEN-LAST:event_PedidoPorClienteMenuActionPerformed
 
     private void DetalleMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_DetalleMenuActionPerformed
-        ConsultaPorPedido panelClientes = new ConsultaPorPedido(ventana);
-        setContentPane(panelClientes);
-        revalidate();
-        repaint();
+
     }// GEN-LAST:event_DetalleMenuActionPerformed
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemClientesActionPerformed
