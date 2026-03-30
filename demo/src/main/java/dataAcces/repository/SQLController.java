@@ -44,7 +44,7 @@ public class SQLController extends Repository {
             }
             parameters = null;
         }
-        return pst.executeQuery(transactsql);
+        return pst.executeQuery();
     }
 
     protected Boolean ExecuteCall(String transactsql) throws SQLException {

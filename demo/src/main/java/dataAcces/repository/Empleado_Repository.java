@@ -24,7 +24,7 @@ public class Empleado_Repository extends SQLController {
                         reader.getInt("ID"), reader.getString("Identificacion"),
                         reader.getString("Nombre_Completo"), reader.getString("Direccion"),
                         reader.getString("Telefono"), reader.getString("Mail"),
-                        Empleado_Cargo.valueOf(reader.getString("Cargo")));
+                        Empleado_Cargo.values()[reader.getInt("Cargo")]);
                 result.add(empleado);
             }
             return result;

@@ -6,19 +6,18 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-
 public class Repository {
     private final String connectionUrl;
     private final String user;
-    private final String pass;    
+    private final String pass;
 
-    public Repository(){
-        connectionUrl = "jdbc:mysql://localhost:3306/Pizzeria";
+    public Repository() {
+        connectionUrl = "jdbc:mysql://localhost:3306/pizzeria";
         user = "root";
-        pass = "Root1234!";
+        pass = "Azuay1560";
     }
-    
-    protected Connection GetConnection(){
+
+    protected Connection GetConnection() {
         try {
             return DriverManager.getConnection(connectionUrl, user, pass);
         } catch (SQLException ex) {

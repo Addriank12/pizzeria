@@ -14,8 +14,10 @@ public class Cliente_Repository extends SQLController {
 
     private final String getAll = "SELECT * FROM Clientes";
     private final String insert = "INSERT INTO Clientes (ID, Identificacion, Nombre_Completo, Direccion, Telefono, Mail) VALUES (?,?,?,?,?,?)";
-    private final String update = "UPDATE Empleados SET Identificacion=?, Nombre_Completo=?, Direccion=?, Telefono=?, Mail=? WHERE ID=?";
-    private final String delete = "DELETE FROM Empleados WHERE ID=?";
+    private final String update = "UPDATE Clientes SET Identificacion=?, Nombre_Completo=?, Direccion=?, Telefono=?, Mail=? WHERE ID=?";
+    private final String delete = "DELETE FROM Clientes WHERE ID=?";
+    private final String getById = "SELECT * FROM Clientes WHERE ID=?";
+    private final String getByIdentificacion = "SELECT * FROM Clientes WHERE Identificacion=?";
 
     public List<Cliente> GetAll() {
         try {
@@ -65,8 +67,7 @@ public class Cliente_Repository extends SQLController {
             e.printStackTrace();
             return false;
         }
-    }   
-            
+    }
 
     public boolean Delete(Integer id) {
         try {
@@ -77,5 +78,45 @@ public class Cliente_Repository extends SQLController {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public Cliente GetById(Integer id) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(id);
+            ResultSet reader = ExecuteReader(getById);
+            if (reader.next()) {
+                return mapCliente(reader);
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Cliente GetByIdentificacion(String identificacion) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(identificacion);
+            ResultSet reader = ExecuteReader(getByIdentificacion);
+            if (reader.next()) {
+                return mapCliente(reader);
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private Cliente mapCliente(ResultSet reader) throws SQLException {
+        return new Cliente(
+                reader.getInt("ID"),
+                reader.getString("Identificacion"),
+                reader.getString("Nombre_Completo"),
+                reader.getString("Direccion"),
+                reader.getString("Telefono"),
+                reader.getString("Mail"));
     }
 }
