@@ -4,9 +4,10 @@
  */
 package view.Mantenimientos;
 
-import dataAcces.model.Cliente;
-import dataAcces.repository.Cliente_Repository;
-import java.util.ArrayList;
+
+import dataAcces.model.Empleado;
+
+import dataAcces.repository.Empleado_Repository;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import view.InterfazPrincipal;
@@ -17,19 +18,19 @@ import view.InterfazPrincipal;
  * @author deku
  */
 
-public class MantenimientoClientes extends javax.swing.JPanel {
+public class MantenimientoEmpleado extends javax.swing.JPanel {
     
-    Cliente_Repository ClienteRep = new Cliente_Repository();
+    Empleado_Repository EmpleadoRep = new Empleado_Repository();
     
     DefaultTableModel modelo;
-    private MantenimientoClientes ventana;
-    List<Cliente> lista;
+    private MantenimientoEmpleado ventana;
+    List<Empleado> lista;
     private javax.swing.JPanel panelOriginal;
 
     /**
      * Creates new form MantenimientoClientes
      */
-    public MantenimientoClientes(InterfazPrincipal ventana) {
+    public MantenimientoEmpleado(InterfazPrincipal ventana) {
         modelo = new DefaultTableModel();
         modelo.addColumn("ID");
         modelo.addColumn("Identificacion");
@@ -37,6 +38,7 @@ public class MantenimientoClientes extends javax.swing.JPanel {
         modelo.addColumn("Direccion");
         modelo.addColumn("Telefono");
         modelo.addColumn("Mail");
+        modelo.addColumn("Cargo");
         initComponents();
         cargarTabla();
         setVisible(true);
@@ -45,15 +47,16 @@ public class MantenimientoClientes extends javax.swing.JPanel {
     
     public void cargarTabla() {
         modelo.setRowCount(0);
-        lista = ClienteRep.GetAll();
-        for(Cliente cliente : lista){
-            Object[] fila = new Object[6];
-            fila[0] = cliente.getID();
-            fila[1] = cliente.getIdentificacion();
-            fila[2] = cliente.getNombre_Completo();
-            fila[3] = cliente.getDireccion();
-            fila[4] = cliente.getTelefono();
-            fila[5] = cliente.getMail();
+        lista = EmpleadoRep.GetAll();
+        for(Empleado empleado : lista){
+            Object[] fila = new Object[7];
+            fila[0] = empleado.getID();
+            fila[1] = empleado.getIdentificacion();
+            fila[2] = empleado.getNombre_Completo();
+            fila[3] = empleado.getDireccion();
+            fila[4] = empleado.getTelefono();
+            fila[5] = empleado.getMail();
+            fila[6] = empleado.getCargo();
             modelo.addRow(fila);
         }
         jTable1.setModel(modelo);
@@ -170,7 +173,7 @@ public class MantenimientoClientes extends javax.swing.JPanel {
                                     .addComponent(jLabel2)
                                     .addGap(18, 18, 18)
                                     .addComponent(NombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(31, Short.MAX_VALUE))
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(45, 45, 45)
@@ -209,7 +212,7 @@ public class MantenimientoClientes extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(BuscarIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BotonBuscarId)))
-                        .addContainerGap(31, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
