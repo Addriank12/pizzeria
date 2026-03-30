@@ -7,6 +7,7 @@ package view;
 import javax.swing.JPanel;
 import view.Mantenimientos.MantenimientoClientes;
 import view.Mantenimientos.MantenimientoEmpleado;
+import view.Mantenimientos.MantenimientoProductos;
 
     
 public class InterfazPrincipal extends javax.swing.JFrame {
@@ -92,7 +93,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         repaint();
     }
     private void jMenuItemProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProductosActionPerformed
-        // TODO add your handling code here:
+        MantenimientoProductos panelClientes = new MantenimientoProductos(ventana);
+        setContentPane(panelClientes);
+        revalidate();
+        repaint();
     }//GEN-LAST:event_jMenuItemProductosActionPerformed
 
     private void jMenuItemEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEmpleadosActionPerformed
@@ -103,7 +107,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemEmpleadosActionPerformed
 
     private void jMenuItemPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPedidosActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenuItemPedidosActionPerformed
 
     /**
