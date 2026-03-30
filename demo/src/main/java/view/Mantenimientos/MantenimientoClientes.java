@@ -85,7 +85,6 @@ public class MantenimientoClientes extends javax.swing.JPanel {
         BotonModificar = new javax.swing.JButton();
         BotonEliminar = new javax.swing.JButton();
         BotonActualizar = new javax.swing.JButton();
-        BotonVolver = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
@@ -130,9 +129,6 @@ public class MantenimientoClientes extends javax.swing.JPanel {
 
         BotonActualizar.setText("Actualizar");
         BotonActualizar.addActionListener(this::BotonActualizarActionPerformed);
-
-        BotonVolver.setText("X");
-        BotonVolver.addActionListener(this::BotonVolverActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -196,17 +192,14 @@ public class MantenimientoClientes extends javax.swing.JPanel {
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addContainerGap(29, Short.MAX_VALUE))
+                                                .addContainerGap(31, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addGap(45, 45, 45)
                                                 .addComponent(IdentificacionTxt, javax.swing.GroupLayout.PREFERRED_SIZE,
                                                         javax.swing.GroupLayout.DEFAULT_SIZE,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(BotonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))));
+                                                .addGap(0, 0, Short.MAX_VALUE)))));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -246,8 +239,7 @@ public class MantenimientoClientes extends javax.swing.JPanel {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(BotonVolver))
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
@@ -262,7 +254,7 @@ public class MantenimientoClientes extends javax.swing.JPanel {
                                                                         javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addComponent(BotonBuscarId)))
-                                                .addContainerGap(22, Short.MAX_VALUE))
+                                                .addContainerGap(31, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
                                                 .createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
@@ -314,32 +306,16 @@ public class MantenimientoClientes extends javax.swing.JPanel {
 
     }
 
-    private void BotonBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {
+    private void BotonBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BotonBuscarIdActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_BotonBuscarIdActionPerformed
 
-        String identificacion = BuscarIDTF.getText();
-        if (identificacion == null || identificacion.isBlank()) {
-            return;
-        }
-        Cliente encontrado = ClienteRep.GetByIdentificacion(identificacion);
-        if (encontrado != null) {
-            rellenarCampos(encontrado);
-            seleccionarEnTablaPorId(encontrado.getID());
-        } else {
-            JOptionPane.showMessageDialog(this, "No se ha encontrado el registro");
-        }
-
-    }
-
-    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonActualizar;
     private javax.swing.JButton BotonBuscarId;
     private javax.swing.JButton BotonEliminar;
     private javax.swing.JButton BotonInsertar;
     private javax.swing.JButton BotonModificar;
-    private javax.swing.JButton BotonVolver;
     private javax.swing.JTextField BuscarIDTF;
     private javax.swing.JTextField DireccionTxt;
     private javax.swing.JTextField IdentificacionTxt;

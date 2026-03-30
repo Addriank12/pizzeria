@@ -6,6 +6,7 @@ package view;
 
 import javax.swing.JPanel;
 import view.Mantenimientos.MantenimientoClientes;
+import view.Mantenimientos.MantenimientoEmpleado;
 
     
 public class InterfazPrincipal extends javax.swing.JFrame {
@@ -20,7 +21,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
      */
     public InterfazPrincipal() {
         initComponents();
-        panelOriginal = (javax.swing.JPanel) getContentPane();
+       panelOriginal = (javax.swing.JPanel) getContentPane();
         
     }
 
@@ -69,11 +70,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
+            .addGap(0, 924, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
+            .addGap(0, 419, Short.MAX_VALUE)
         );
 
         pack();
@@ -95,7 +96,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemProductosActionPerformed
 
     private void jMenuItemEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEmpleadosActionPerformed
-        // TODO add your handling code here:
+        MantenimientoEmpleado panelClientes = new MantenimientoEmpleado(ventana);
+        setContentPane(panelClientes);
+        revalidate();
+        repaint();
     }//GEN-LAST:event_jMenuItemEmpleadosActionPerformed
 
     private void jMenuItemPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPedidosActionPerformed
