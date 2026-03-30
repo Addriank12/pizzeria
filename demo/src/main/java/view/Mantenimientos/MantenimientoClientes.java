@@ -291,8 +291,7 @@ public class MantenimientoClientes extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private Cliente construirClienteParaInsertar() {
-        int nuevoId = ClienteRep.GetAll().size() + 1;
-        return new Cliente(nuevoId, IdentificacionTxt.getText(), NombreTxt.getText(),
+        return new Cliente(0, IdentificacionTxt.getText(), NombreTxt.getText(),
                 DireccionTxt.getText(), TelefonoTxt.getText(), "");
     }
 

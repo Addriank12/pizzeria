@@ -377,10 +377,9 @@ public class MantenimientoProductos extends javax.swing.JPanel {
     }
 
     private Producto construirProductoParaInsertar() {
-        int nuevoId = ProductoRep.GetAll().size() + 1;
         Categoria categoria = (Categoria) CategoriaCombo.getSelectedItem();
         int categoriaId = categoria != null ? categoria.getID() : 0;
-        return new Producto(nuevoId, NombreTxt.getText(), DescripcionTxt.getText(),
+        return new Producto(0, NombreTxt.getText(), DescripcionTxt.getText(),
                 parsePrecio(), categoriaId);
     }
 
