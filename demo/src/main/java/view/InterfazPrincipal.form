@@ -56,12 +56,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PedidoPorClienteMenuActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="DetalleMenu">
+            <MenuItem class="javax.swing.JMenuItem" name="PorCategoria">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Productos por categoria"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DetalleMenuActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PorCategoriaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

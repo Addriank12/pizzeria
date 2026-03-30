@@ -6,7 +6,8 @@ package view;
 
 import javax.swing.JPanel;
 import view.Mantenimientos.ConsultaPorCategoria;
-import view.Mantenimientos.ConsultaPorPedido;
+import view.Mantenimientos.ConsultaPorCliente;
+
 import view.Mantenimientos.MantenimientoClientes;
 import view.Mantenimientos.MantenimientoEmpleado;
 import view.Mantenimientos.MantenimientoPedidos;
@@ -36,7 +37,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -47,7 +48,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jMenuItemPedidos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         PedidoPorClienteMenu = new javax.swing.JMenuItem();
-        DetalleMenu = new javax.swing.JMenuItem();
+        PorCategoria = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de pizzeria");
@@ -78,9 +79,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         PedidoPorClienteMenu.addActionListener(this::PedidoPorClienteMenuActionPerformed);
         jMenu1.add(PedidoPorClienteMenu);
 
-        DetalleMenu.setText("Productos por categoria");
-        DetalleMenu.addActionListener(this::DetalleMenuActionPerformed);
-        jMenu1.add(DetalleMenu);
+        PorCategoria.setText("Productos por categoria");
+        PorCategoria.addActionListener(this::PorCategoriaActionPerformed);
+        jMenu1.add(PorCategoria);
 
         jMenuBar1.add(jMenu1);
 
@@ -89,24 +90,36 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 924, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 924, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 419, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PedidoPorClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_PedidoPorClienteMenuActionPerformed
+    private void PorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PorCategoriaActionPerformed
         ConsultaPorCategoria panelconsulta1 = new ConsultaPorCategoria(ventana);
+        setContentPane(panelconsulta1);
+        revalidate();
+        repaint();       
+    }//GEN-LAST:event_PorCategoriaActionPerformed
+
+    private void PedidoPorClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_PedidoPorClienteMenuActionPerformed
+        ConsultaPorCliente panelconsulta1 = new ConsultaPorCliente(ventana);
         setContentPane(panelconsulta1);
         revalidate();
         repaint();
     }// GEN-LAST:event_PedidoPorClienteMenuActionPerformed
 
     private void DetalleMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_DetalleMenuActionPerformed
-
+        ConsultaPorCliente panelconsulta1 = new ConsultaPorCliente(ventana);
+        setContentPane(panelconsulta1);
+        revalidate();
+        repaint();
     }// GEN-LAST:event_DetalleMenuActionPerformed
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemClientesActionPerformed
@@ -173,8 +186,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem DetalleMenu;
     private javax.swing.JMenuItem PedidoPorClienteMenu;
+    private javax.swing.JMenuItem PorCategoria;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemClientes;
