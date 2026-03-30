@@ -1,0 +1,4 @@
+demo/target/*
+demo/target/classes/com/pizzeria/Main.class
+demo/target/classes/dataAcces/repository/Empleado_Repository.class
+demo/target/classes/view/Mantenimientos/MantenimientoEmpleado.class

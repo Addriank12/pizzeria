@@ -14,6 +14,8 @@ public class Empleado_Repository extends SQLController {
     private final String insert = "INSERT INTO Empleados (ID, Identificacion, Nombre_Completo, Direccion, Telefono, Mail, Cargo) VALUES(?,?,?,?,?,?,?)";
     private final String update = "UPDATE Empleados SET Identificacion=?, Nombre_Completo=?, Direccion=?, Telefono=?, Mail=?, Cargo=? WHERE ID=?";
     private final String delete = "DELETE FROM Empleados WHERE ID=?";
+    private final String getById = "SELECT * FROM Empleados WHERE ID=?";
+    private final String getByIdentificacion = "SELECT * FROM Empleados WHERE Identificacion=?";
 
     public List<Empleado> GetAll() {
         try {
@@ -59,7 +61,7 @@ public class Empleado_Repository extends SQLController {
             parameters.add(empleado.getDireccion());
             parameters.add(empleado.getTelefono());
             parameters.add(empleado.getMail());
-            parameters.add(Integer.parseInt(empleado.getCargo().toString()));
+            parameters.add(empleado.getCargo().ordinal());
             parameters.add(empleado.getID());
             return ExecuteNonQuery(update);
         } catch (SQLException e) {
@@ -77,6 +79,47 @@ public class Empleado_Repository extends SQLController {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public Empleado GetById(Integer id) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(id);
+            ResultSet reader = ExecuteReader(getById);
+            if (reader.next()) {
+                return mapEmpleado(reader);
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Empleado GetByIdentificacion(String identificacion) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(identificacion);
+            ResultSet reader = ExecuteReader(getByIdentificacion);
+            if (reader.next()) {
+                return mapEmpleado(reader);
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private Empleado mapEmpleado(ResultSet reader) throws SQLException {
+        return new Empleado(
+                reader.getInt("ID"),
+                reader.getString("Identificacion"),
+                reader.getString("Nombre_Completo"),
+                reader.getString("Direccion"),
+                reader.getString("Telefono"),
+                reader.getString("Mail"),
+                Empleado_Cargo.values()[reader.getInt("Cargo")]);
     }
 
 }

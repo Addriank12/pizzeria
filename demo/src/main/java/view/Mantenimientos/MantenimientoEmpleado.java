@@ -6,7 +6,7 @@ package view.Mantenimientos;
 
 
 import dataAcces.model.Empleado;
-
+import dataAcces.model.Empleado_Cargo;
 import dataAcces.repository.Empleado_Repository;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -81,6 +81,18 @@ public class MantenimientoEmpleado extends javax.swing.JPanel {
         NombreTxt = new javax.swing.JTextField();
         DireccionTxt = new javax.swing.JTextField();
         TelefonoTxt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        MailTxt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        CargoCombo = new javax.swing.JComboBox<>();
+
+        jLabel6.setText("Ingrese mail");
+
+        MailTxt.setColumns(10);
+
+        jLabel7.setText("Cargo");
+
+        CargoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(Empleado_Cargo.values()));
         jLabel5 = new javax.swing.JLabel();
         BuscarIDTF = new javax.swing.JTextField();
         BotonBuscarId = new javax.swing.JButton();
@@ -166,6 +178,14 @@ public class MantenimientoEmpleado extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(TelefonoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(MailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CargoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(DireccionTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -200,7 +220,15 @@ public class MantenimientoEmpleado extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(TelefonoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TelefonoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(MailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(CargoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -225,23 +253,56 @@ public class MantenimientoEmpleado extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarActionPerformed
-        // TODO add your handling code here:
+
+        Empleado nuevo = construirEmpleadoParaInsertar();
+        if (nuevo == null) {
+            return;
+        }
+        EmpleadoRep.Insert(nuevo);
+        cargarTabla();
+
     }//GEN-LAST:event_BotonInsertarActionPerformed
 
     private void BotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarActionPerformed
-        // TODO add your handling code here:
+
+        Empleado actualizado = construirEmpleadoDesdeSeleccion();
+        if (actualizado == null) {
+            return;
+        }
+        EmpleadoRep.Update(actualizado);
+        cargarTabla();
+
     }//GEN-LAST:event_BotonModificarActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-        // TODO add your handling code here:
+
+        Integer id = obtenerIdSeleccionado();
+        if (id == null) {
+            return;
+        }
+        EmpleadoRep.Delete(id);
+        cargarTabla();
+
     }//GEN-LAST:event_BotonEliminarActionPerformed
 
     private void BotonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActualizarActionPerformed
-        // TODO add your handling code here:
+
+        cargarTabla();
+
     }//GEN-LAST:event_BotonActualizarActionPerformed
 
     private void BotonBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarIdActionPerformed
-        // TODO add your handling code here:
+
+        String identificacion = BuscarIDTF.getText();
+        if (identificacion == null || identificacion.isBlank()) {
+            return;
+        }
+        Empleado encontrado = EmpleadoRep.GetByIdentificacion(identificacion);
+        if (encontrado != null) {
+            rellenarCampos(encontrado);
+            seleccionarEnTablaPorId(encontrado.getID());
+        }
+
     }//GEN-LAST:event_BotonBuscarIdActionPerformed
 
 
@@ -252,8 +313,10 @@ public class MantenimientoEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton BotonInsertar;
     private javax.swing.JButton BotonModificar;
     private javax.swing.JTextField BuscarIDTF;
+    private javax.swing.JComboBox<Empleado_Cargo> CargoCombo;
     private javax.swing.JTextField DireccionTxt;
     private javax.swing.JTextField IdentificacionTxt;
+    private javax.swing.JTextField MailTxt;
     private javax.swing.JTextField NombreTxt;
     private javax.swing.JTextField TelefonoTxt;
     private javax.swing.JLabel jLabel1;
@@ -261,7 +324,73 @@ public class MantenimientoEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private Empleado construirEmpleadoParaInsertar() {
+        int nuevoId = EmpleadoRep.GetAll().size() + 1;
+        return new Empleado(nuevoId, IdentificacionTxt.getText(), NombreTxt.getText(),
+                DireccionTxt.getText(), TelefonoTxt.getText(), MailTxt.getText(),
+                (Empleado_Cargo) CargoCombo.getSelectedItem());
+    }
+
+    private Empleado construirEmpleadoDesdeSeleccion() {
+        Integer id = obtenerIdSeleccionado();
+        if (id == null) {
+            return null;
+        }
+        return new Empleado(id, IdentificacionTxt.getText(), NombreTxt.getText(),
+                DireccionTxt.getText(), TelefonoTxt.getText(), MailTxt.getText(),
+                (Empleado_Cargo) CargoCombo.getSelectedItem());
+    }
+
+    private Integer obtenerIdSeleccionado() {
+        int fila = jTable1.getSelectedRow();
+        if (fila < 0) {
+            return null;
+        }
+        Object valor = jTable1.getValueAt(fila, 0);
+        if (valor instanceof Integer) {
+            return (Integer) valor;
+        }
+        if (valor instanceof String) {
+            try {
+                return Integer.parseInt((String) valor);
+            } catch (NumberFormatException ex) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    private void rellenarCampos(Empleado empleado) {
+        IdentificacionTxt.setText(empleado.getIdentificacion());
+        NombreTxt.setText(empleado.getNombre_Completo());
+        DireccionTxt.setText(empleado.getDireccion());
+        TelefonoTxt.setText(empleado.getTelefono());
+        MailTxt.setText(empleado.getMail());
+        CargoCombo.setSelectedItem(empleado.getCargo());
+    }
+
+    private void seleccionarEnTablaPorId(int id) {
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            Object valor = jTable1.getValueAt(i, 0);
+            if (valor instanceof Integer && ((Integer) valor) == id) {
+                jTable1.setRowSelectionInterval(i, i);
+                return;
+            }
+            if (valor instanceof String) {
+                try {
+                    if (Integer.parseInt((String) valor) == id) {
+                        jTable1.setRowSelectionInterval(i, i);
+                        return;
+                    }
+                } catch (NumberFormatException ignored) {
+                }
+            }
+        }
+    }
 }
