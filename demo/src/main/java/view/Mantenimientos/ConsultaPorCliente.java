@@ -5,13 +5,8 @@
 package view.Mantenimientos;
 
 import dataAcces.model.Cliente;
-import dataAcces.model.Pedido;
 import dataAcces.repository.Cliente_Repository;
-import dataAcces.repository.Pedido_Repository;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.InterfazPrincipal;
@@ -24,7 +19,6 @@ public class ConsultaPorCliente extends javax.swing.JPanel {
     private ConsultaPorCliente ventana;
     private javax.swing.JPanel panelOriginal;
     Cliente_Repository clienterep = new Cliente_Repository();
-    Pedido_Repository pedidoRep = new Pedido_Repository();
     DefaultTableModel modelo;
     List<Cliente> lista;
 
@@ -127,35 +121,14 @@ public class ConsultaPorCliente extends javax.swing.JPanel {
     private void cargarPedidosPorNombreCliente(String nombreCliente) {
         modelo.setRowCount(0);
 
-        List<Cliente> clientes = clienterep.GetAll();
-        List<Pedido> pedidos = pedidoRep.GetAll();
-        String filtro = nombreCliente == null ? "" : nombreCliente.trim().toLowerCase(Locale.ROOT);
-
-        Map<Integer, String> clientesPorId = new HashMap<>();
-        for (Cliente cliente : clientes) {
-            clientesPorId.put(cliente.getID(), cliente.getNombre_Completo());
-        }
-
-        for (Pedido pedido : pedidos) {
-            String nombre = clientesPorId.get(pedido.getCliente_ID());
-            if (nombre == null) {
-                continue;
-            }
-
-            if (filtro.isEmpty() || nombre.toLowerCase(Locale.ROOT).contains(filtro)) {
-                Object[] fila = new Object[5];
-                fila[0] = pedido.getID();
-                fila[1] = nombre;
-                fila[2] = pedido.getFecha();
-                fila[3] = pedido.getEstado();
-                fila[4] = pedido.getTotal();
-                modelo.addRow(fila);
-            }
+        List<Object[]> pedidos = clienterep.GetPedidosByNombreCliente(nombreCliente);
+        for (Object[] fila : pedidos) {
+            modelo.addRow(fila);
         }
 
         jTable1.setModel(modelo);
 
-        if (modelo.getRowCount() == 0 && !filtro.isEmpty()) {
+        if (modelo.getRowCount() == 0 && nombreCliente != null && !nombreCliente.isBlank()) {
             JOptionPane.showMessageDialog(this, "No se encontraron pedidos para ese cliente.");
         }
     }

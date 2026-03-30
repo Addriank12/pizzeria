@@ -18,6 +18,9 @@ public class Cliente_Repository extends SQLController {
     private final String delete = "DELETE FROM Clientes WHERE ID=?";
     private final String getById = "SELECT * FROM Clientes WHERE ID=?";
     private final String getByIdentificacion = "SELECT * FROM Clientes WHERE Identificacion=?";
+    private final String getPedidosByNombreCliente = "SELECT p.ID, c.Nombre_Completo, p.Fecha, p.Estado, p.Total "
+            + "FROM Pedidos p INNER JOIN Clientes c ON p.Clientes_ID = c.ID "
+            + "WHERE LOWER(c.Nombre_Completo) LIKE ?";
 
     public List<Cliente> GetAll() {
         try {
@@ -107,6 +110,30 @@ public class Cliente_Repository extends SQLController {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public List<Object[]> GetPedidosByNombreCliente(String nombreCliente) {
+        try {
+            parameters = new ArrayList<>();
+            String filtro = nombreCliente == null ? "" : nombreCliente.trim().toLowerCase();
+            parameters.add("%" + filtro + "%");
+
+            List<Object[]> result = new ArrayList<>();
+            ResultSet reader = ExecuteReader(getPedidosByNombreCliente);
+            while (reader.next()) {
+                Object[] fila = new Object[5];
+                fila[0] = reader.getInt("ID");
+                fila[1] = reader.getString("Nombre_Completo");
+                fila[2] = reader.getDate("Fecha");
+                fila[3] = reader.getInt("Estado");
+                fila[4] = reader.getDouble("Total");
+                result.add(fila);
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
