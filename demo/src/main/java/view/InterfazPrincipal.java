@@ -35,7 +35,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -77,7 +78,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         PedidoPorClienteMenu.addActionListener(this::PedidoPorClienteMenuActionPerformed);
         jMenu1.add(PedidoPorClienteMenu);
 
-        DetalleMenu.setText("Detalle de pedido");
+        DetalleMenu.setText("Productos por categoria");
         DetalleMenu.addActionListener(this::DetalleMenuActionPerformed);
         jMenu1.add(DetalleMenu);
 
@@ -88,30 +89,28 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 924, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 924, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 419, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PedidoPorClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedidoPorClienteMenuActionPerformed
+    private void PedidoPorClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_PedidoPorClienteMenuActionPerformed
         ConsultaPorCliente panelconsulta1 = new ConsultaPorCliente(ventana);
         setContentPane(panelconsulta1);
         revalidate();
         repaint();
-    }//GEN-LAST:event_PedidoPorClienteMenuActionPerformed
+    }// GEN-LAST:event_PedidoPorClienteMenuActionPerformed
 
-    private void DetalleMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetalleMenuActionPerformed
+    private void DetalleMenuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_DetalleMenuActionPerformed
         ConsultaPorPedido panelClientes = new ConsultaPorPedido(ventana);
         setContentPane(panelClientes);
         revalidate();
         repaint();
-    }//GEN-LAST:event_DetalleMenuActionPerformed
+    }// GEN-LAST:event_DetalleMenuActionPerformed
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemClientesActionPerformed
         MantenimientoClientes panelClientes = new MantenimientoClientes(ventana);
