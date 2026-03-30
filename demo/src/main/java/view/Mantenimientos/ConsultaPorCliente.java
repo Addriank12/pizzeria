@@ -4,6 +4,10 @@
  */
 package view.Mantenimientos;
 
+import dataAcces.model.Cliente;
+import dataAcces.repository.Cliente_Repository;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import view.InterfazPrincipal;
 
 /**
@@ -13,13 +17,23 @@ import view.InterfazPrincipal;
 public class ConsultaPorCliente extends javax.swing.JPanel {
     private ConsultaPorCliente ventana;
     private javax.swing.JPanel panelOriginal;
+    Cliente_Repository clienterep = new Cliente_Repository();
+    DefaultTableModel modelo;
+    List<Cliente> lista;
 
     /**
      * Creates new form ConsultaPorCliente
      */
     public ConsultaPorCliente(InterfazPrincipal ventana) {
-        
+        modelo = new DefaultTableModel();
+        modelo.addColumn("ID pedido");
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Total");
         initComponents();
+       
+        setVisible(true);
     }
 
     /**
@@ -57,6 +71,7 @@ public class ConsultaPorCliente extends javax.swing.JPanel {
         jTextField1.setColumns(10);
 
         BotonBuscar.setText("Buscar");
+        BotonBuscar.addActionListener(this::BotonBuscarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,6 +104,23 @@ public class ConsultaPorCliente extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+     
+                modelo.setRowCount(0);
+                lista = clienterep.GetAll();
+                for (Cliente cliente : lista) {
+                    Object[] fila = new Object[6];
+                    fila[0] = cliente.getID();
+                    fila[1] = cliente.getIdentificacion();
+                    fila[2] = cliente.getNombre_Completo();
+                    fila[3] = cliente.getDireccion();
+                    fila[4] = cliente.getTelefono();
+                    fila[5] = cliente.getMail();
+                    modelo.addRow(fila);
+                }
+                jTable1.setModel(modelo);
+    }//GEN-LAST:event_BotonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
