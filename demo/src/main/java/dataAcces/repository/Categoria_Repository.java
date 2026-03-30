@@ -6,12 +6,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Categoria_Repository extends SQLController{
+public class Categoria_Repository extends SQLController {
 
     private final String getAll = "SELECT * FROM Categorias";
     private final String insert = "INSERT INTO Categorias (ID, Categoria) VALUES(?,?)";
-    private final String update = "UPDATE Categorias SET ID=?, Categoria=? WHERE ID=?";
+    private final String update = "UPDATE Categorias SET Categoria=? WHERE ID=?";
     private final String delete = "DELETE FROM Categorias WHERE ID=?";
+    private final String getById = "SELECT * FROM Categorias WHERE ID=?";
+    private final String getByNombre = "SELECT * FROM Categorias WHERE Categoria=?";
 
     public List<Categoria> GetAll() {
         try {
@@ -44,8 +46,8 @@ public class Categoria_Repository extends SQLController{
     public boolean Update(Categoria categoria) {
         try {
             parameters = new ArrayList<>();
-            parameters.add(categoria.getID());
             parameters.add(categoria.getCategoria());
+            parameters.add(categoria.getID());
 
             return ExecuteNonQuery(update);
         } catch (SQLException e) {
@@ -63,5 +65,39 @@ public class Categoria_Repository extends SQLController{
             e.printStackTrace();
             return false;
         }
+    }
+
+    public Categoria GetById(Integer id) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(id);
+            ResultSet reader = ExecuteReader(getById);
+            if (reader.next()) {
+                return mapCategoria(reader);
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Categoria GetByNombre(String nombre) {
+        try {
+            parameters = new ArrayList<>();
+            parameters.add(nombre);
+            ResultSet reader = ExecuteReader(getByNombre);
+            if (reader.next()) {
+                return mapCategoria(reader);
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private Categoria mapCategoria(ResultSet reader) throws SQLException {
+        return new Categoria(reader.getInt("ID"), reader.getString("Categoria"));
     }
 }

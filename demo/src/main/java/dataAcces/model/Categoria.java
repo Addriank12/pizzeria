@@ -4,12 +4,9 @@ public class Categoria extends Base_Model {
 
     private String Categoria;
 
-
     public String getCategoria() {
         return Categoria;
     }
-
-
 
     public void setCategoria(String Categoria) {
         this.Categoria = Categoria;
@@ -18,5 +15,10 @@ public class Categoria extends Base_Model {
     public Categoria(int ID, String Categoria) {
         super(ID);
         this.Categoria = Categoria;
+    }
+
+    @Override
+    public String toString() {
+        return Categoria;
     }
 }
