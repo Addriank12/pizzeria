@@ -4,8 +4,7 @@
  */
 package view.Mantenimientos;
 
-import dataAcces.model.Cliente;
-import dataAcces.repository.Cliente_Repository;
+import dataAcces.repository.Categoria_Repository;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,22 +17,21 @@ import view.InterfazPrincipal;
 public class ConsultaPorCategoria extends javax.swing.JPanel {
     private ConsultaPorCategoria ventana;
     private javax.swing.JPanel panelOriginal;
-    Cliente_Repository clienterep = new Cliente_Repository();
+    Categoria_Repository categoriaRep = new Categoria_Repository();
     DefaultTableModel modelo;
-    List<Cliente> lista;
 
     /**
      * Creates new form ConsultaPorCliente
      */
     public ConsultaPorCategoria(InterfazPrincipal ventana) {
         modelo = new DefaultTableModel();
-        modelo.addColumn("ID pedido");
-        modelo.addColumn("Cliente");
-        modelo.addColumn("Fecha");
-        modelo.addColumn("Estado");
-        modelo.addColumn("Total");
+        modelo.addColumn("ID Producto");
+        modelo.addColumn("Producto");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Categoria");
         initComponents();
-        cargarPedidosPorNombreCliente("");
+        cargarProductosPorCategoria("");
         setVisible(true);
     }
 
@@ -44,7 +42,8 @@ public class ConsultaPorCategoria extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -59,16 +58,15 @@ public class ConsultaPorCategoria extends javax.swing.JPanel {
         setVerifyInputWhenFocusTarget(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
+                },
+                new String[] {
 
-            }
-        ));
+                }));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Ingrese el nombre del cliente");
+        jLabel1.setText("Ingrese el nombre de la categoria");
 
         jTextField1.setColumns(10);
 
@@ -78,56 +76,59 @@ public class ConsultaPorCategoria extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotonBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BotonBuscar)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BotonBuscar)))
-                .addGap(20, 20, 20))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36,
+                                        Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(BotonBuscar)))
+                                .addGap(20, 20, 20)));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BotonBuscarActionPerformed
-        String nombreCliente = jTextField1.getText() == null ? "" : jTextField1.getText().trim();
-        if (nombreCliente.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Ingrese el nombre del cliente para buscar.");
+        String nombreCategoria = jTextField1.getText() == null ? "" : jTextField1.getText().trim();
+        if (nombreCategoria.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre de la categoria para buscar.");
             return;
         }
-        cargarPedidosPorNombreCliente(nombreCliente);
+        cargarProductosPorCategoria(nombreCategoria);
     }// GEN-LAST:event_BotonBuscarActionPerformed
 
-    private void cargarPedidosPorNombreCliente(String nombreCliente) {
+    private void cargarProductosPorCategoria(String nombreCategoria) {
         modelo.setRowCount(0);
 
-        List<Object[]> pedidos = clienterep.GetPedidosByNombreCliente(nombreCliente);
-        for (Object[] fila : pedidos) {
+        List<Object[]> productos = categoriaRep.GetProductosByNombreCategoria(nombreCategoria);
+        for (Object[] fila : productos) {
             modelo.addRow(fila);
         }
 
         jTable1.setModel(modelo);
 
-        if (modelo.getRowCount() == 0 && nombreCliente != null && !nombreCliente.isBlank()) {
-            JOptionPane.showMessageDialog(this, "No se encontraron pedidos para ese cliente.");
+        if (modelo.getRowCount() == 0 && nombreCategoria != null && !nombreCategoria.isBlank()) {
+            JOptionPane.showMessageDialog(this, "No se encontraron productos para esa categoria.");
         }
     }
 

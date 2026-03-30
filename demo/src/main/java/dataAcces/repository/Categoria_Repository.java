@@ -14,6 +14,9 @@ public class Categoria_Repository extends SQLController {
     private final String delete = "DELETE FROM Categorias WHERE ID=?";
     private final String getById = "SELECT * FROM Categorias WHERE ID=?";
     private final String getByNombre = "SELECT * FROM Categorias WHERE Categoria=?";
+    private final String getProductosByNombreCategoria = "SELECT p.ID, p.Nombre, p.Descripcion, p.Precio, c.Categoria "
+            + "FROM Productos p INNER JOIN Categorias c ON p.Categorias_Id = c.ID "
+            + "WHERE LOWER(c.Categoria) LIKE ?";
 
     public List<Categoria> GetAll() {
         try {
@@ -94,6 +97,30 @@ public class Categoria_Repository extends SQLController {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public List<Object[]> GetProductosByNombreCategoria(String categoria) {
+        try {
+            parameters = new ArrayList<>();
+            String filtro = categoria == null ? "" : categoria.trim().toLowerCase();
+            parameters.add("%" + filtro + "%");
+
+            List<Object[]> result = new ArrayList<>();
+            ResultSet reader = ExecuteReader(getProductosByNombreCategoria);
+            while (reader.next()) {
+                Object[] fila = new Object[5];
+                fila[0] = reader.getInt("ID");
+                fila[1] = reader.getString("Nombre");
+                fila[2] = reader.getString("Descripcion");
+                fila[3] = reader.getDouble("Precio");
+                fila[4] = reader.getString("Categoria");
+                result.add(fila);
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
