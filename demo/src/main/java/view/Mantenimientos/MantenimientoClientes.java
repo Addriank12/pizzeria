@@ -5,10 +5,8 @@
 package view.Mantenimientos;
 
 import dataAcces.model.Cliente;
-import dataAcces.model.Empleado;
 import dataAcces.repository.Cliente_Repository;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.InterfazPrincipal;
@@ -17,7 +15,6 @@ import view.InterfazPrincipal;
  *
  * @author deku
  */
-
 public class MantenimientoClientes extends javax.swing.JPanel {
 
     Cliente_Repository ClienteRep = new Cliente_Repository();
@@ -66,7 +63,6 @@ public class MantenimientoClientes extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -89,32 +85,21 @@ public class MantenimientoClientes extends javax.swing.JPanel {
         BotonActualizar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-
-                },
-                new String[] {
-
-                }));
+                new Object[][] {},
+                new String[] {}));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Ingrese identificacion");
-
         jLabel2.setText("Ingrese nombre completo");
-
         jLabel3.setText("Ingrese direccion");
-
         jLabel4.setText("Ingrese telefono");
 
         IdentificacionTxt.setColumns(10);
-
         NombreTxt.setColumns(10);
-
         DireccionTxt.setColumns(10);
-
         TelefonoTxt.setColumns(10);
 
         jLabel5.setText("Buscar por identificacion:");
-
         BuscarIDTF.setColumns(10);
 
         BotonBuscarId.setText("Buscar");
@@ -134,13 +119,13 @@ public class MantenimientoClientes extends javax.swing.JPanel {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
+
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel5)
@@ -153,61 +138,48 @@ public class MantenimientoClientes extends javax.swing.JPanel {
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(BotonInsertar)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(BotonModificar)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(BotonEliminar)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(BotonActualizar))
-                                                        .addGroup(layout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addComponent(jLabel4)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(TelefonoTxt,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addComponent(jLabel3)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(DireccionTxt,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addComponent(jLabel2)
-                                                                        .addGap(18, 18, 18)
-                                                                        .addComponent(NombreTxt,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addContainerGap(31, Short.MAX_VALUE))
+                                                .addComponent(BotonInsertar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(BotonModificar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(BotonEliminar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(BotonActualizar))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
-                                                .addGap(45, 45, 45)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(IdentificacionTxt, javax.swing.GroupLayout.PREFERRED_SIZE,
                                                         javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE)))));
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(NombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(DireccionTxt, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(TelefonoTxt, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(15, Short.MAX_VALUE)));
+
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
+                                                .addGap(12, 12, 12)
                                                 .addGroup(layout
                                                         .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel1)
@@ -237,86 +209,64 @@ public class MantenimientoClientes extends javax.swing.JPanel {
                                                         .addComponent(TelefonoTxt,
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel5)
-                                                        .addGroup(layout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(BuscarIDTF,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(BotonBuscarId)))
-                                                .addContainerGap(34, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                .createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(BotonInsertar)
-                                                        .addComponent(BotonModificar)
-                                                        .addComponent(BotonEliminar)
-                                                        .addComponent(BotonActualizar))
-                                                .addContainerGap()))));
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel5)
+                                        .addComponent(BuscarIDTF, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BotonBuscarId)
+                                        .addComponent(BotonInsertar)
+                                        .addComponent(BotonModificar)
+                                        .addComponent(BotonEliminar)
+                                        .addComponent(BotonActualizar))
+                                .addContainerGap(34, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonInsertarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BotonInsertarActionPerformed
-
         Cliente nuevo = construirClienteParaInsertar();
         if (nuevo == null) {
             return;
         }
         ClienteRep.Insert(nuevo);
         cargarTabla();
-
     }
 
     private void BotonModificarActionPerformed(java.awt.event.ActionEvent evt) {
-
         Cliente actualizado = construirClienteDesdeSeleccion();
         if (actualizado == null) {
             return;
         }
         ClienteRep.Update(actualizado);
         cargarTabla();
-
     }
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {
-
         Integer id = obtenerIdSeleccionado();
         if (id == null) {
             return;
         }
         ClienteRep.Delete(id);
         cargarTabla();
-
     }
 
     private void BotonActualizarActionPerformed(java.awt.event.ActionEvent evt) {
         cargarTabla();
-
     }
 
     private void BotonBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BotonBuscarIdActionPerformed
-        String identificacion = BuscarIDTF.getText();
-        if (identificacion == null || identificacion.isBlank()) {
+        String identificacion = BuscarIDTF.getText() == null ? "" : BuscarIDTF.getText().trim();
+        if (identificacion.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Ingrese una identificación para buscar.");
             return;
         }
         Cliente encontrado = ClienteRep.GetByIdentificacion(identificacion);
         if (encontrado != null) {
             rellenarCampos(encontrado);
             seleccionarEnTablaPorId(encontrado.getID());
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró cliente con esa identificación.");
         }
     }// GEN-LAST:event_BotonBuscarIdActionPerformed
 
