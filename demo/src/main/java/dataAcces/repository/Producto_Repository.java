@@ -13,7 +13,7 @@ import java.util.List;
 public class Producto_Repository extends SQLController {
     private final String getAll = "SELECT * FROM Productos";
     private final String insert = "INSERT INTO Productos (ID, Nombre, Descripcion, Precio, Categorias_Id) VALUES (?,?,?,?,?)";
-    private final String update = "UPDATE Productos SET ID=?, Nombre=?, Descripcion=?, Precio=?, Categorias_Id=? WHERE ID=?";
+    private final String update = "UPDATE Productos SET Nombre=?, Descripcion=?, Precio=?, Categorias_Id=? WHERE ID=?";
     private final String delete = "DELETE FROM Productos WHERE ID=?";
     private final String getById = "SELECT * FROM Productos WHERE ID=?";
     private final String getByNombre = "SELECT * FROM Productos WHERE Nombre=?";
@@ -54,7 +54,6 @@ public class Producto_Repository extends SQLController {
     public boolean Update(Producto producto) {
         try {
             parameters = new ArrayList<>();
-            parameters.add(producto.getID());
             parameters.add(producto.getNombre());
             parameters.add(producto.getDescripcion());
             parameters.add(producto.getPrecio());

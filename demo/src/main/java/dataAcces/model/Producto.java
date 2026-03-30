@@ -46,4 +46,9 @@ public class Producto extends Base_Model {
         this.categoria_ID = categoria_ID;
     }
 
+    @Override
+    public String toString() {
+        return nombre + " (ID " + getID() + ")";
+    }
+
 }

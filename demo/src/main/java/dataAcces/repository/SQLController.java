@@ -13,14 +13,21 @@ public class SQLController extends Repository {
         PreparedStatement pst = GetConnection().prepareStatement(transactsql);
         if (parameters != null) {
             for (int i = 0; i < parameters.size(); i++) {
-                if (parameters.get(i) instanceof String) {
-                    pst.setString(i + 1, (String) parameters.get(i));
-                } else if (parameters.get(i) instanceof Integer) {
-                    pst.setInt(i + 1, (Integer) parameters.get(i));
-                } else if (parameters.get(i) instanceof Double) {
-                    pst.setDouble(i + 1, (Double) parameters.get(i));
-                } else if (parameters.get(i) instanceof Float) {
-                    pst.setFloat(i + 1, (Float) parameters.get(i));
+                Object value = parameters.get(i);
+                if (value instanceof String) {
+                    pst.setString(i + 1, (String) value);
+                } else if (value instanceof Integer) {
+                    pst.setInt(i + 1, (Integer) value);
+                } else if (value instanceof Double) {
+                    pst.setDouble(i + 1, (Double) value);
+                } else if (value instanceof Float) {
+                    pst.setFloat(i + 1, (Float) value);
+                } else if (value instanceof java.sql.Date) {
+                    pst.setDate(i + 1, (java.sql.Date) value);
+                } else if (value instanceof java.util.Date) {
+                    pst.setTimestamp(i + 1, new java.sql.Timestamp(((java.util.Date) value).getTime()));
+                } else if (value instanceof Enum<?>) {
+                    pst.setString(i + 1, ((Enum<?>) value).name());
                 }
             }
             parameters = null;
@@ -32,14 +39,21 @@ public class SQLController extends Repository {
         PreparedStatement pst = GetConnection().prepareStatement(transactsql);
         if (parameters != null) {
             for (int i = 0; i < parameters.size(); i++) {
-                if (parameters.get(i) instanceof String) {
-                    pst.setString(i + 1, (String) parameters.get(i));
-                } else if (parameters.get(i) instanceof Integer) {
-                    pst.setInt(i + 1, (Integer) parameters.get(i));
-                } else if (parameters.get(i) instanceof Double) {
-                    pst.setDouble(i + 1, (Double) parameters.get(i));
-                } else if (parameters.get(i) instanceof Float) {
-                    pst.setFloat(i + 1, (Float) parameters.get(i));
+                Object value = parameters.get(i);
+                if (value instanceof String) {
+                    pst.setString(i + 1, (String) value);
+                } else if (value instanceof Integer) {
+                    pst.setInt(i + 1, (Integer) value);
+                } else if (value instanceof Double) {
+                    pst.setDouble(i + 1, (Double) value);
+                } else if (value instanceof Float) {
+                    pst.setFloat(i + 1, (Float) value);
+                } else if (value instanceof java.sql.Date) {
+                    pst.setDate(i + 1, (java.sql.Date) value);
+                } else if (value instanceof java.util.Date) {
+                    pst.setTimestamp(i + 1, new java.sql.Timestamp(((java.util.Date) value).getTime()));
+                } else if (value instanceof Enum<?>) {
+                    pst.setString(i + 1, ((Enum<?>) value).name());
                 }
             }
             parameters = null;
@@ -51,14 +65,21 @@ public class SQLController extends Repository {
         PreparedStatement pst = GetConnection().prepareCall(transactsql);
         if (parameters != null) {
             for (int i = 0; i < parameters.size(); i++) {
-                if (parameters.get(i) instanceof String) {
-                    pst.setString(i + 1, (String) parameters.get(i));
-                } else if (parameters.get(i) instanceof Integer) {
-                    pst.setInt(i + 1, (Integer) parameters.get(i));
-                } else if (parameters.get(i) instanceof Double) {
-                    pst.setDouble(i + 1, (Double) parameters.get(i));
-                } else if (parameters.get(i) instanceof Float) {
-                    pst.setFloat(i + 1, (Float) parameters.get(i));
+                Object value = parameters.get(i);
+                if (value instanceof String) {
+                    pst.setString(i + 1, (String) value);
+                } else if (value instanceof Integer) {
+                    pst.setInt(i + 1, (Integer) value);
+                } else if (value instanceof Double) {
+                    pst.setDouble(i + 1, (Double) value);
+                } else if (value instanceof Float) {
+                    pst.setFloat(i + 1, (Float) value);
+                } else if (value instanceof java.sql.Date) {
+                    pst.setDate(i + 1, (java.sql.Date) value);
+                } else if (value instanceof java.util.Date) {
+                    pst.setTimestamp(i + 1, new java.sql.Timestamp(((java.util.Date) value).getTime()));
+                } else if (value instanceof Enum<?>) {
+                    pst.setString(i + 1, ((Enum<?>) value).name());
                 }
             }
             parameters = null;

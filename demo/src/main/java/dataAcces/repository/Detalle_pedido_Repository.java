@@ -6,14 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataAcces.model.Empleado;
-import dataAcces.model.Empleado_Cargo;
-
 public class Detalle_pedido_Repository extends SQLController {
 
     private final String getAll = "SELECT * FROM DetallePedido";
     private final String insert = "INSERT INTO DetallePedido (ID, Cantidad, Subtotal, Pedidos_ID, Productos_ID) VALUES(?,?,?,?,?)";
-    private final String update = "UPDATE DetallePedido SET ID=?, Cantidad=?, Subtotal=?, Pedidos_ID=?, Productos_ID=? WHERE ID=?";
+    private final String update = "UPDATE DetallePedido SET Cantidad=?, Subtotal=?, Pedidos_ID=?, Productos_ID=? WHERE ID=?";
     private final String delete = "DELETE FROM DetallePedido WHERE ID=?";
 
     public List<Detalle_Pedido> GetAll() {
@@ -52,11 +49,11 @@ public class Detalle_pedido_Repository extends SQLController {
     public boolean Update(Detalle_Pedido detalle_Pedido) {
         try {
             parameters = new ArrayList<>();
-            parameters.add(detalle_Pedido.getID());
             parameters.add(detalle_Pedido.getCantidad());
             parameters.add(detalle_Pedido.getSubtotal());
             parameters.add(detalle_Pedido.getPedidos_ID());
             parameters.add(detalle_Pedido.getProductos_ID());
+            parameters.add(detalle_Pedido.getID());
             return ExecuteNonQuery(update);
         } catch (SQLException e) {
             e.printStackTrace();
